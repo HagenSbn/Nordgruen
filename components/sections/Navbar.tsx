@@ -85,7 +85,7 @@ export default function Navbar() {
           </a>
           <a
             href="/#kontakt"
-            className="hidden sm:inline-flex items-center bg-[#309c30] hover:bg-[#1e6b1e] text-white text-[14px] sm:text-[15px] font-semibold px-4 sm:px-5 py-2.5 rounded-[6px] transition-colors font-body whitespace-nowrap"
+            className="hidden md:inline-flex items-center bg-[#309c30] hover:bg-[#1e6b1e] text-white text-[15px] font-semibold px-5 py-2.5 rounded-[6px] transition-colors font-body whitespace-nowrap"
           >
             Termin
           </a>

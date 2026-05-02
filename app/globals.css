@@ -13,7 +13,10 @@ body {
 
 /* Prevent ugly horizontal scroll on mobile from any rogue overflowing element */
 html, body {
-  overflow-x: clip;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
 }
 
 /* Long German compounds: allow break across syllables when needed */
