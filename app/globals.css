@@ -5,3 +5,18 @@
 html {
   scroll-behavior: smooth;
 }
+
+body {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Prevent ugly horizontal scroll on mobile from any rogue overflowing element */
+html, body {
+  overflow-x: clip;
+}
+
+/* Long German compounds: allow break across syllables when needed */
+h1, h2, h3, h4, p, li {
+  hyphens: auto;
+}

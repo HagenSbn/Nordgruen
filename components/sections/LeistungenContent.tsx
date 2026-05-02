@@ -232,9 +232,9 @@ function QuickNav() {
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section className="bg-[#f0faf0] py-10 border-b border-[#e5e7eb]">
-      <div className="max-w-container mx-auto px-6">
-        <div ref={ref} className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-3">
+    <section className="bg-[#f0faf0] py-8 sm:py-10 border-b border-[#e5e7eb]">
+      <div className="max-w-container mx-auto px-4 sm:px-6">
+        <div ref={ref} className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9 gap-2 sm:gap-3">
           {services.map((s, i) => (
             <motion.a
               key={s.id}
@@ -243,12 +243,12 @@ function QuickNav() {
               variants={fadeUp}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
-              className="flex flex-col items-center gap-2 p-3 rounded-[10px] bg-white border border-[#e5e7eb] hover:border-[#309c30] hover:shadow-sm transition-all group text-center"
+              className="flex flex-col items-center gap-2 p-2.5 sm:p-3 rounded-[10px] bg-white border border-[#e5e7eb] hover:border-[#309c30] hover:shadow-sm transition-all group text-center min-h-[88px]"
             >
               <span className="text-[#309c30] group-hover:scale-110 transition-transform">
                 {s.icon}
               </span>
-              <span className="text-[12px] font-semibold text-[#374151] font-body leading-tight">
+              <span className="text-[11px] sm:text-[12px] font-semibold text-[#374151] font-body leading-tight break-words">
                 {s.title}
               </span>
             </motion.a>
@@ -266,30 +266,35 @@ function ServiceSection({ service, idx }: { service: typeof services[0]; idx: nu
   return (
     <section
       id={service.id}
-      className={`py-20 md:py-24 scroll-mt-16 ${idx % 2 === 0 ? "bg-white" : "bg-[#f0faf0]"}`}
+      className={`py-14 sm:py-20 md:py-24 scroll-mt-16 ${idx % 2 === 0 ? "bg-white" : "bg-[#f0faf0]"}`}
     >
-      <div className="max-w-container mx-auto px-6">
-        <div ref={ref} className="grid lg:grid-cols-3 gap-12">
-          {/* Left: sticky header */}
+      <div className="max-w-container mx-auto px-4 sm:px-6">
+        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
           <motion.div
             variants={fadeIn}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             className="lg:col-span-1"
           >
-            <div className="sticky top-24">
+            <div className="lg:sticky lg:top-24">
               <div className="flex items-center gap-4 mb-5">
                 <div className="w-14 h-14 rounded-full bg-[#309c30] flex items-center justify-center text-white flex-shrink-0">
                   {service.icon}
                 </div>
-                <span className="font-display font-extrabold text-[32px] text-[#e5e7eb]">
+                <span
+                  className="font-display font-extrabold text-[#e5e7eb]"
+                  style={{ fontSize: "clamp(1.75rem, 4vw, 2rem)" }}
+                >
                   {service.number}
                 </span>
               </div>
-              <span className="text-[12px] font-semibold text-[#309c30] uppercase tracking-[0.08em] font-body block mb-2">
+              <span className="text-[12px] font-semibold text-[#309c30] uppercase tracking-[0.08em] font-body block mb-2 break-words">
                 {service.subtitle}
               </span>
-              <h2 className="font-display font-bold text-[30px] text-[#111827] leading-tight mb-4">
+              <h2
+                className="font-display font-bold text-[#111827] leading-tight mb-4 [text-wrap:balance]"
+                style={{ fontSize: "clamp(1.5rem, 3.5vw, 1.875rem)" }}
+              >
                 {service.title}
               </h2>
               <p className="text-[15px] text-[#374151] leading-[1.75] font-body mb-6">
@@ -304,10 +309,10 @@ function ServiceSection({ service, idx }: { service: typeof services[0]; idx: nu
                 </svg>
                 {service.badge}
               </div>
-              <div className="mt-8">
+              <div className="mt-7 sm:mt-8">
                 <a
                   href="#kontakt-leistungen"
-                  className="inline-flex items-center gap-2 bg-[#309c30] hover:bg-[#1e6b1e] text-white font-semibold px-5 py-3 rounded-[6px] transition-all hover:scale-[1.02] font-body text-[14px]"
+                  className="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-[#309c30] hover:bg-[#1e6b1e] text-white font-semibold px-5 py-3 min-h-[48px] rounded-[6px] transition-all hover:scale-[1.02] font-body text-[14px]"
                 >
                   Angebot anfragen
                 </a>
@@ -315,8 +320,7 @@ function ServiceSection({ service, idx }: { service: typeof services[0]; idx: nu
             </div>
           </motion.div>
 
-          {/* Right: detail cards */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-6 sm:space-y-8">
             {service.groups.map((group, gi) => (
               <motion.div
                 key={group.title}
@@ -324,19 +328,19 @@ function ServiceSection({ service, idx }: { service: typeof services[0]; idx: nu
                 variants={fadeUp}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                className="bg-white rounded-[12px] border border-[#e5e7eb] p-7"
+                className="bg-white rounded-[12px] border border-[#e5e7eb] p-5 sm:p-6 lg:p-7"
               >
-                <div className="flex items-start justify-between mb-5 gap-4">
-                  <h3 className="font-display font-bold text-[20px] text-[#111827]">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 sm:mb-5 gap-2 sm:gap-4">
+                  <h3 className="font-display font-bold text-[19px] sm:text-[20px] text-[#111827] break-words">
                     {group.title}
                   </h3>
                   {group.note && (
-                    <span className="text-[11px] font-semibold text-[#6b7280] uppercase tracking-[0.06em] font-body bg-[#f0faf0] px-2.5 py-1 rounded-[4px] flex-shrink-0">
+                    <span className="text-[11px] font-semibold text-[#6b7280] uppercase tracking-[0.06em] font-body bg-[#f0faf0] px-2.5 py-1 rounded-[4px] sm:flex-shrink-0 self-start">
                       {group.note}
                     </span>
                   )}
                 </div>
-                <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
                   {group.checks.map((check, ci) => (
                     <motion.li
                       key={check}
@@ -365,8 +369,8 @@ function CtaSection() {
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section id="kontakt-leistungen" className="bg-[#309c30] py-16">
-      <div ref={ref} className="max-w-container mx-auto px-6 text-center">
+    <section id="kontakt-leistungen" className="bg-[#309c30] py-12 sm:py-16">
+      <div ref={ref} className="max-w-container mx-auto px-4 sm:px-6 text-center">
         <motion.span
           variants={fadeUp}
           custom={0}
@@ -381,7 +385,8 @@ function CtaSection() {
           custom={1}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="font-display font-bold text-[36px] text-white leading-tight mb-4"
+          className="font-display font-bold text-white leading-tight mb-4 [text-wrap:balance]"
+          style={{ fontSize: "clamp(1.625rem, 4vw, 2.25rem)" }}
         >
           Kostenlosen Vor-Ort-Termin anfragen
         </motion.h2>
@@ -390,7 +395,7 @@ function CtaSection() {
           custom={2}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="text-white/80 text-[16px] font-body mb-8 max-w-xl mx-auto leading-[1.7]"
+          className="text-white/80 text-[15px] sm:text-[16px] font-body mb-7 sm:mb-8 max-w-xl mx-auto leading-[1.7]"
         >
           Wir besichtigen Ihr Grundstück kostenlos, beraten Sie fachkundig
           und erstellen ein transparentes Angebot ohne versteckte Kosten.
@@ -400,17 +405,17 @@ function CtaSection() {
           custom={3}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="flex flex-wrap justify-center gap-4"
+          className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4"
         >
           <Link
             href="/#kontakt"
-            className="bg-white text-[#309c30] font-semibold px-8 py-3.5 rounded-[6px] hover:bg-[#f0faf0] transition-all hover:scale-[1.02] font-body text-[15px]"
+            className="w-full sm:w-auto inline-flex items-center justify-center bg-white text-[#309c30] font-semibold px-7 sm:px-8 py-3.5 min-h-[48px] rounded-[6px] hover:bg-[#f0faf0] transition-all hover:scale-[1.02] font-body text-[15px]"
           >
             Termin anfragen
           </Link>
           <a
             href="tel:041212633100"
-            className="flex items-center gap-2 border-2 border-white text-white font-semibold px-8 py-3.5 rounded-[6px] hover:bg-white/10 transition-all font-body text-[15px]"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 border-2 border-white text-white font-semibold px-7 sm:px-8 py-3.5 min-h-[48px] rounded-[6px] hover:bg-white/10 transition-all font-body text-[15px]"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
@@ -427,8 +432,8 @@ export default function LeistungenContent() {
   return (
     <main>
       {/* Hero – animates on load */}
-      <section className="bg-[#0d2b08] pt-32 pb-16">
-        <div className="max-w-container mx-auto px-6">
+      <section className="bg-[#0d2b08] pt-28 sm:pt-32 pb-12 sm:pb-16">
+        <div className="max-w-container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -458,7 +463,8 @@ export default function LeistungenContent() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className="font-display font-extrabold text-[48px] md:text-[56px] text-white leading-tight mb-4"
+            className="font-display font-extrabold text-white leading-[1.1] mb-4 [text-wrap:balance]"
+            style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)" }}
           >
             Alles rund um{" "}
             <span className="text-[#4a9e30]">Baum &amp; Grün</span>
@@ -468,7 +474,8 @@ export default function LeistungenContent() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.18 }}
-            className="text-white/70 text-[17px] font-body leading-[1.7] max-w-2xl"
+            className="text-white/70 font-body leading-[1.7] max-w-2xl"
+            style={{ fontSize: "clamp(0.95rem, 1.6vw, 1.0625rem)" }}
           >
             Von der Kronenpflege bis zur Landschaftspflege – alle unsere
             Leistungen werden nach FLL-Richtlinien und ZTV-Baumpflege von

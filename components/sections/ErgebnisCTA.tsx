@@ -9,7 +9,7 @@ export default function ErgebnisCTA() {
 
   return (
     <section
-      className="relative py-28 md:py-36"
+      className="relative py-20 sm:py-28 md:py-36"
       style={{
         backgroundImage:
           "url(https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1920&q=80)",
@@ -24,7 +24,7 @@ export default function ErgebnisCTA() {
 
       <div
         ref={ref}
-        className="relative z-10 max-w-container mx-auto px-6 text-center"
+        className="relative z-10 max-w-container mx-auto px-4 sm:px-6 text-center"
       >
         <motion.span
           initial={{ opacity: 0, y: 10 }}
@@ -39,7 +39,8 @@ export default function ErgebnisCTA() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
-          className="font-display font-bold text-[42px] text-white leading-tight mb-10"
+          className="font-display font-bold text-white leading-tight mb-8 sm:mb-10 [text-wrap:balance]"
+          style={{ fontSize: "clamp(1.75rem, 4.5vw, 2.625rem)" }}
         >
           Ein gepflegtes Grundstück –{" "}
           <span className="text-[#4a9e30]">sicher und schön.</span>
@@ -50,9 +51,9 @@ export default function ErgebnisCTA() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
           href="#kontakt"
-          className="inline-flex items-center gap-2 bg-[#2d6a1f] hover:bg-[#1a3d12] text-white font-semibold px-10 py-4 rounded-[6px] transition-all hover:scale-[1.02] font-body text-[15px]"
+          className="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-[#309c30] hover:bg-[#1e6b1e] text-white font-semibold px-7 sm:px-10 py-4 min-h-[48px] rounded-[6px] transition-all hover:scale-[1.02] font-body text-[15px]"
         >
-          📅 Jetzt kostenlosen Termin anfragen
+          Jetzt kostenlosen Termin anfragen
         </motion.a>
       </div>
     </section>

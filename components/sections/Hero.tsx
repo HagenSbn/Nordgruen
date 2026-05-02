@@ -15,39 +15,39 @@ export default function Hero() {
   return (
     <section
       id="start"
-      className="relative min-h-screen flex flex-col justify-center"
+      className="relative min-h-[100svh] flex flex-col justify-center"
       style={{
         backgroundImage: "url(/nordgruenbanner.png)",
         backgroundSize: "cover",
         backgroundPosition: "center 30%",
       }}
     >
-      {/* Overlay */}
       <div
         className="absolute inset-0"
         style={{ background: "rgba(15, 40, 10, 0.65)" }}
       />
 
-      <div className="relative z-10 max-w-container mx-auto px-6 pt-24 pb-20">
-        {/* Badge */}
+      <div className="relative z-10 w-full max-w-container mx-auto px-4 sm:px-6 pt-24 pb-16 sm:pb-20">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-[100px] text-white text-sm font-medium font-body mb-8"
+          className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-[100px] text-white text-[12px] sm:text-sm font-medium font-body mb-6 sm:mb-8 max-w-full"
           style={{ background: "rgba(255, 255, 255, 0.15)" }}
         >
-          FLL-ZERTIFIZIERT · EUROPEAN TREE WORKER
+          <span className="break-words">FLL-ZERTIFIZIERT · EUROPEAN TREE WORKER</span>
         </motion.div>
 
-        {/* Headline */}
-        <h1 className="font-display font-extrabold text-5xl md:text-[64px] leading-tight mb-6">
+        <h1
+          className="font-display font-extrabold leading-[1.1] mb-5 sm:mb-6 [text-wrap:balance]"
+          style={{ fontSize: "clamp(2rem, 6.5vw, 4rem)", hyphens: "auto" }}
+        >
           <motion.span
             custom={0}
             variants={wordAnim}
             initial="hidden"
             animate="visible"
-            className="text-white block"
+            className="text-white block break-words"
           >
             Baum- und Landschaftspflege
           </motion.span>
@@ -56,51 +56,49 @@ export default function Hero() {
             variants={wordAnim}
             initial="hidden"
             animate="visible"
-            className="text-[#4a9e30] block"
+            className="text-[#4a9e30] block break-words"
           >
             in Schleswig-Holstein &amp; Hamburg
           </motion.span>
         </h1>
 
-        {/* Subtext */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5, ease: "easeOut" }}
-          className="text-white/90 text-lg font-body max-w-[560px] leading-[1.7] mb-8"
+          className="text-white/90 font-body leading-[1.7] mb-7 sm:mb-8 max-w-[35rem]"
+          style={{ fontSize: "clamp(0.95rem, 1.6vw, 1.125rem)" }}
         >
           Professionelle Baum- und Landschaftspflege von zertifizierten
           Fachleuten. Kostenloser Vor-Ort-Termin – ehrlich, transparent, ohne
           versteckte Kosten.
         </motion.p>
 
-        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
-          className="flex flex-wrap gap-4 mb-10"
+          className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-8 sm:mb-10"
         >
           <a
             href="#kontakt"
-            className="flex items-center gap-2 bg-[#2d6a1f] hover:bg-[#1a3d12] text-white font-semibold px-7 py-3.5 rounded-[6px] transition-all hover:scale-[1.02] font-body text-[15px]"
+            className="flex items-center justify-center gap-2 bg-[#309c30] hover:bg-[#1e6b1e] text-white font-semibold px-6 sm:px-7 py-3.5 min-h-[48px] rounded-[6px] transition-all hover:scale-[1.02] font-body text-[15px] w-full sm:w-auto"
           >
-            📅 Kostenlosen Termin anfragen
+            Kostenlosen Termin anfragen
           </a>
           <a
             href="tel:041212633100"
-            className="flex items-center gap-2 border-2 border-white text-white font-semibold px-7 py-3.5 rounded-[6px] hover:bg-white/10 transition-all font-body text-[15px]"
+            className="flex items-center justify-center gap-2 border-2 border-white text-white font-semibold px-6 sm:px-7 py-3.5 min-h-[48px] rounded-[6px] hover:bg-white/10 transition-all font-body text-[15px] w-full sm:w-auto"
           >
             Jetzt anrufen
           </a>
         </motion.div>
 
-        {/* Trust items */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.5 }}
-          className="flex flex-wrap gap-6"
+          className="flex flex-wrap gap-x-5 gap-y-2 sm:gap-x-6"
         >
           {[
             {
@@ -132,7 +130,7 @@ export default function Hero() {
           ].map(({ label, icon }) => (
             <span
               key={label}
-              className="flex items-center gap-2 text-white text-sm font-body font-semibold"
+              className="flex items-center gap-2 text-white text-[13px] sm:text-sm font-body font-semibold"
             >
               <span className="text-[#4a9e30]">{icon}</span>
               {label}
@@ -141,12 +139,11 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        className="hidden sm:block absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}

@@ -89,9 +89,8 @@ function AnimSection({
 export default function StandortContent({ data }: { data: StandortData }) {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-[#0d2b08] pt-32 pb-16">
-        <div className="max-w-container mx-auto px-6">
+      <section className="bg-[#0d2b08] pt-28 sm:pt-32 pb-12 sm:pb-16">
+        <div className="max-w-container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -121,27 +120,28 @@ export default function StandortContent({ data }: { data: StandortData }) {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.1 }}
-            className="font-display font-bold text-[48px] md:text-[56px] text-white leading-tight mb-5"
+            className="font-display font-bold text-white leading-[1.1] mb-5 [text-wrap:balance]"
+            style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)" }}
           >
             Baumpflege in{" "}
-            <span className="text-[#4a9e30]">{data.name}</span>
+            <span className="text-[#4a9e30] break-words">{data.name}</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 0.17 }}
-            className="text-white/70 text-[17px] font-body leading-[1.7] max-w-2xl"
+            className="text-white/70 font-body leading-[1.7] max-w-2xl"
+            style={{ fontSize: "clamp(0.95rem, 1.6vw, 1.0625rem)" }}
           >
             {data.intro[0]}
           </motion.p>
         </div>
       </section>
 
-      {/* Intro */}
-      <section className="py-20 bg-white">
-        <div className="max-w-container mx-auto px-6">
-          <AnimSection className="grid lg:grid-cols-2 gap-12 items-start">
+      <section className="py-14 sm:py-20 bg-white">
+        <div className="max-w-container mx-auto px-4 sm:px-6">
+          <AnimSection className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
             {(isInView) => (
               <>
                 <div className="space-y-5">
@@ -163,9 +163,9 @@ export default function StandortContent({ data }: { data: StandortData }) {
                   custom={2}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
-                  className="bg-[#f0faf0] rounded-[12px] p-8 border border-[#e5e7eb]"
+                  className="bg-[#f0faf0] rounded-[12px] p-6 sm:p-8 border border-[#e5e7eb]"
                 >
-                  <span className="text-[12px] font-semibold text-[#309c30] uppercase tracking-[0.08em] font-body block mb-4">
+                  <span className="text-[12px] font-semibold text-[#309c30] uppercase tracking-[0.08em] font-body block mb-4 break-words">
                     NORDGRÜN IN {data.name.toUpperCase()}
                   </span>
                   <ul className="space-y-3">
@@ -178,13 +178,13 @@ export default function StandortContent({ data }: { data: StandortData }) {
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-3 text-[14px] text-[#374151] font-body">
                         <span className="text-[#309c30] font-bold flex-shrink-0 mt-0.5">✓</span>
-                        {item}
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                   <a
                     href="/#kontakt"
-                    className="mt-6 inline-flex items-center gap-2 bg-[#309c30] hover:bg-[#1e6b1e] text-white font-semibold px-5 py-3 rounded-[6px] transition-all hover:scale-[1.02] font-body text-[14px]"
+                    className="mt-6 inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-[#309c30] hover:bg-[#1e6b1e] text-white font-semibold px-5 py-3 min-h-[48px] rounded-[6px] transition-all hover:scale-[1.02] font-body text-[14px]"
                   >
                     Kostenlosen Termin anfragen
                   </a>
@@ -195,9 +195,8 @@ export default function StandortContent({ data }: { data: StandortData }) {
         </div>
       </section>
 
-      {/* Services – quick-nav grid */}
-      <section className="py-16 bg-[#f0faf0] border-b border-[#e5e7eb]">
-        <div className="max-w-container mx-auto px-6">
+      <section className="py-12 sm:py-16 bg-[#f0faf0] border-b border-[#e5e7eb]">
+        <div className="max-w-container mx-auto px-4 sm:px-6">
           <AnimSection>
             {(isInView) => (
               <>
@@ -211,8 +210,11 @@ export default function StandortContent({ data }: { data: StandortData }) {
                     <span className="text-[13px] font-semibold text-[#309c30] uppercase tracking-[0.1em] font-body block mb-2">
                       LEISTUNGEN VOR ORT
                     </span>
-                    <h2 className="font-display font-bold text-[30px] text-[#111827] leading-tight">
-                      Unsere Leistungen in {data.name}
+                    <h2
+                      className="font-display font-bold text-[#111827] leading-tight [text-wrap:balance]"
+                      style={{ fontSize: "clamp(1.5rem, 3.5vw, 1.875rem)" }}
+                    >
+                      Unsere Leistungen in <span className="break-words">{data.name}</span>
                     </h2>
                   </div>
                   <Link
@@ -226,7 +228,7 @@ export default function StandortContent({ data }: { data: StandortData }) {
                   </Link>
                 </motion.div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
                   {serviceIcons.map((icon, i) => (
                     <motion.div
                       key={i}
@@ -237,12 +239,12 @@ export default function StandortContent({ data }: { data: StandortData }) {
                     >
                       <Link
                         href="/leistungen"
-                        className="flex flex-col items-center gap-2.5 p-4 rounded-[10px] bg-white border border-[#e5e7eb] hover:border-[#309c30] hover:shadow-sm transition-all group text-center"
+                        className="flex flex-col items-center gap-2 sm:gap-2.5 p-3 sm:p-4 min-h-[100px] rounded-[10px] bg-white border border-[#e5e7eb] hover:border-[#309c30] hover:shadow-sm transition-all group text-center"
                       >
                         <span className="text-[#309c30] group-hover:scale-110 transition-transform">
                           {icon.svg}
                         </span>
-                        <span className="text-[12px] font-semibold text-[#374151] font-body leading-tight">
+                        <span className="text-[11px] sm:text-[12px] font-semibold text-[#374151] font-body leading-tight break-words">
                           {data.services[i]?.title.split(" in ")[0] ?? icon.label}
                         </span>
                       </Link>
@@ -255,9 +257,8 @@ export default function StandortContent({ data }: { data: StandortData }) {
         </div>
       </section>
 
-      {/* Local Relevance */}
-      <section className="py-20 bg-white">
-        <div className="max-w-container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-white">
+        <div className="max-w-container mx-auto px-4 sm:px-6">
           <AnimSection className="max-w-3xl">
             {(isInView) => (
               <>
@@ -270,7 +271,10 @@ export default function StandortContent({ data }: { data: StandortData }) {
                   <span className="text-[13px] font-semibold text-[#309c30] uppercase tracking-[0.1em] font-body block mb-3">
                     LOKALE RELEVANZ
                   </span>
-                  <h2 className="font-display font-bold text-[36px] text-[#111827] leading-tight">
+                  <h2
+                    className="font-display font-bold text-[#111827] leading-tight [text-wrap:balance]"
+                    style={{ fontSize: "clamp(1.625rem, 4vw, 2.25rem)" }}
+                  >
                     {data.localSection.title}
                   </h2>
                 </motion.div>
@@ -294,9 +298,8 @@ export default function StandortContent({ data }: { data: StandortData }) {
         </div>
       </section>
 
-      {/* Why Nordgrün */}
-      <section className="py-20 bg-[#0d2b08]">
-        <div className="max-w-container mx-auto px-6">
+      <section className="py-14 sm:py-20 bg-[#0d2b08]">
+        <div className="max-w-container mx-auto px-4 sm:px-6">
           <AnimSection>
             {(isInView) => (
               <>
@@ -309,12 +312,15 @@ export default function StandortContent({ data }: { data: StandortData }) {
                   <span className="text-[13px] font-semibold text-[#4a9e30] uppercase tracking-[0.1em] font-body block mb-3">
                     WARUM NORDGRÜN
                   </span>
-                  <h2 className="font-display font-bold text-[36px] text-white leading-tight">
+                  <h2
+                    className="font-display font-bold text-white leading-tight [text-wrap:balance]"
+                    style={{ fontSize: "clamp(1.625rem, 4vw, 2.25rem)" }}
+                  >
                     Ihr verlässlicher Partner in{" "}
-                    <span className="text-[#4a9e30]">{data.name}</span>
+                    <span className="text-[#4a9e30] break-words">{data.name}</span>
                   </h2>
                 </motion.div>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-4xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 max-w-4xl mx-auto">
                   {[
                     { title: "Inhabergeführt", desc: "Persönliche Betreuung durch den zertifizierten Betriebsleiter – kein Subunternehmer, keine Anonymität." },
                     { title: "ETW & FLL zertifiziert", desc: "European Tree Worker und FLL-Baumkontrolleur – höchste anerkannte Qualifikationen in der Baumpflege." },
@@ -342,9 +348,8 @@ export default function StandortContent({ data }: { data: StandortData }) {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-[#309c30]">
-        <div className="max-w-container mx-auto px-6 text-center">
+      <section className="py-14 sm:py-20 bg-[#309c30]">
+        <div className="max-w-container mx-auto px-4 sm:px-6 text-center">
           <AnimSection>
             {(isInView) => (
               <>
@@ -353,16 +358,17 @@ export default function StandortContent({ data }: { data: StandortData }) {
                   custom={0}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
-                  className="font-display font-bold text-[36px] text-white leading-tight mb-4"
+                  className="font-display font-bold text-white leading-tight mb-4 [text-wrap:balance]"
+                  style={{ fontSize: "clamp(1.625rem, 4vw, 2.25rem)" }}
                 >
-                  Baumpflege in {data.name} anfragen
+                  Baumpflege in <span className="break-words">{data.name}</span> anfragen
                 </motion.h2>
                 <motion.p
                   variants={fadeUp}
                   custom={1}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
-                  className="text-white/80 text-[16px] font-body mb-8 max-w-lg mx-auto leading-[1.7]"
+                  className="text-white/80 text-[15px] sm:text-[16px] font-body mb-7 sm:mb-8 max-w-lg mx-auto leading-[1.7]"
                 >
                   Kostenloser Vor-Ort-Termin – wir besichtigen, beraten und erstellen
                   ein transparentes Angebot. Ohne Verpflichtung.
@@ -372,17 +378,17 @@ export default function StandortContent({ data }: { data: StandortData }) {
                   custom={2}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
-                  className="flex flex-wrap justify-center gap-4"
+                  className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4"
                 >
                   <Link
                     href="/#kontakt"
-                    className="bg-white text-[#309c30] font-semibold px-8 py-4 rounded-[6px] hover:bg-[#f0faf0] transition-all hover:scale-[1.02] font-body text-[15px]"
+                    className="w-full sm:w-auto inline-flex items-center justify-center bg-white text-[#309c30] font-semibold px-7 sm:px-8 py-4 min-h-[48px] rounded-[6px] hover:bg-[#f0faf0] transition-all hover:scale-[1.02] font-body text-[15px]"
                   >
                     Kostenlosen Termin anfragen
                   </Link>
                   <a
                     href="tel:041212633100"
-                    className="border-2 border-white text-white font-semibold px-8 py-4 rounded-[6px] hover:bg-white/10 transition-all font-body text-[15px]"
+                    className="w-full sm:w-auto inline-flex items-center justify-center border-2 border-white text-white font-semibold px-7 sm:px-8 py-4 min-h-[48px] rounded-[6px] hover:bg-white/10 transition-all font-body text-[15px]"
                   >
                     04121 2633100
                   </a>

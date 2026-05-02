@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <h2 className="font-display font-bold text-[22px] text-[#111827] mb-4">{title}</h2>
-      <div className="text-[16px] leading-[1.8] text-[#374151] space-y-3">{children}</div>
+      <h2 className="font-display font-bold text-[20px] sm:text-[22px] text-[#111827] mb-4 break-words">{title}</h2>
+      <div className="text-[15px] sm:text-[16px] leading-[1.8] text-[#374151] space-y-3 break-words">{children}</div>
     </div>
   );
 }
@@ -22,29 +22,32 @@ export default function Datenschutz() {
     <>
       <Navbar />
 
-      <section className="bg-[#0d2b08] pt-32 pb-16">
-        <div className="max-w-container mx-auto px-6">
+      <section className="bg-[#0d2b08] pt-28 sm:pt-32 pb-12 sm:pb-16">
+        <div className="max-w-container mx-auto px-4 sm:px-6">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-[#4a9e30] text-[14px] font-body font-medium hover:underline mb-8 block"
+            className="inline-flex items-center gap-2 text-[#4a9e30] text-[14px] font-body font-medium hover:underline mb-6 sm:mb-8 block"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
               <path d="M19 12H5M12 5l-7 7 7 7" />
             </svg>
             Zurück zur Startseite
           </Link>
-          <h1 className="font-display font-bold text-[48px] text-white leading-tight">
+          <h1
+            className="font-display font-bold text-white leading-tight [text-wrap:balance]"
+            style={{ fontSize: "clamp(2rem, 6vw, 3rem)" }}
+          >
             Datenschutzerklärung
           </h1>
-          <p className="text-white/60 font-body text-[15px] mt-3">
+          <p className="text-white/60 font-body text-[14px] sm:text-[15px] mt-3">
             Zuletzt aktualisiert: April 2025
           </p>
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="max-w-container mx-auto px-6">
-          <div className="max-w-2xl space-y-12 font-body">
+      <section className="py-14 sm:py-20 bg-white">
+        <div className="max-w-container mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl space-y-10 sm:space-y-12 font-body">
 
             <Section title="1. Verantwortlicher">
               <p>

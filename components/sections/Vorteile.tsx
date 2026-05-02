@@ -20,7 +20,7 @@ const advantages = [
       </svg>
     ),
     title: "Höchste Qualifikation",
-    desc: "FLL-zertifiziert, ETW und Dipl.-Ing. – wir bringen die höchsten Branchenqualifikationen mit.",
+    desc: "FLL-zertifiziert und ETW – wir bringen die höchsten Branchenqualifikationen mit.",
   },
   {
     icon: (
@@ -47,18 +47,21 @@ export default function Vorteile() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 md:py-24 bg-[#0d2b08]" id="vorteile">
-      <div className="max-w-container mx-auto px-6">
-        <div className="text-center mb-16">
+    <section className="py-14 sm:py-20 md:py-24 bg-[#0d2b08]" id="vorteile">
+      <div className="max-w-container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-10 sm:mb-14 md:mb-16">
           <span className="text-[13px] font-semibold text-[#4a9e30] uppercase tracking-[0.1em] font-body block mb-3">
             WARUM NORDGRÜN
           </span>
-          <h2 className="font-display font-bold text-[42px] text-white leading-tight">
+          <h2
+            className="font-display font-bold text-white leading-tight [text-wrap:balance]"
+            style={{ fontSize: "clamp(1.75rem, 4.5vw, 2.625rem)" }}
+          >
             Ihr Vorteil mit uns
           </h2>
         </div>
 
-        <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           {advantages.map((adv, i) => (
             <motion.div
               key={adv.title}
@@ -73,7 +76,7 @@ export default function Vorteile() {
               >
                 {adv.icon}
               </div>
-              <h3 className="font-display font-bold text-[18px] text-white mb-3">
+              <h3 className="font-display font-bold text-[18px] text-white mb-3 break-words">
                 {adv.title}
               </h3>
               <p className="text-[14px] text-white/70 leading-relaxed font-body">

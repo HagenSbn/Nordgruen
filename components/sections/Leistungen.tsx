@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
 
-const S = 1.75; // shared strokeWidth
+const S = 1.75;
 
 const services = [
   {
@@ -121,34 +121,37 @@ export default function Leistungen() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="leistungen" className="py-20 md:py-24 bg-[#f0faf0]">
-      <div className="max-w-container mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+    <section id="leistungen" className="py-14 sm:py-20 md:py-24 bg-[#f0faf0]">
+      <div className="max-w-container mx-auto px-4 sm:px-6">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-10 sm:mb-12">
           <div>
             <span className="text-[13px] font-semibold text-[#309c30] uppercase tracking-[0.1em] font-body block mb-3">
               UNSERE LEISTUNGEN
             </span>
-            <h2 className="font-display font-bold text-[42px] text-[#111827] leading-tight">
+            <h2
+              className="font-display font-bold text-[#111827] leading-tight [text-wrap:balance]"
+              style={{ fontSize: "clamp(1.75rem, 4.5vw, 2.625rem)" }}
+            >
               Alles rund um{" "}
               <span className="text-[#4a9e30]">Baum &amp; Grün</span>
             </h2>
           </div>
           <Link
             href="/leistungen"
-            className="mt-4 md:mt-0 text-[#309c30] font-semibold text-sm hover:underline font-body"
+            className="text-[#309c30] font-semibold text-sm hover:underline font-body whitespace-nowrap"
           >
             Alle Leistungen →
           </Link>
         </div>
 
-        <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
-              className="bg-white border border-[#e5e7eb] rounded-[12px] p-7 hover:shadow-md hover:border-[#309c30] transition-all"
+              className="bg-white border border-[#e5e7eb] rounded-[12px] p-5 sm:p-6 lg:p-7 hover:shadow-md hover:border-[#309c30] transition-all"
             >
               <div
                 className="w-12 h-12 rounded-full flex items-center justify-center text-[#309c30] mb-5"
@@ -156,10 +159,10 @@ export default function Leistungen() {
               >
                 {service.icon}
               </div>
-              <h3 className="font-display font-bold text-[20px] text-[#111827] mb-1">
+              <h3 className="font-display font-bold text-[20px] text-[#111827] mb-1 break-words">
                 {service.title}
               </h3>
-              <p className="text-[12px] font-semibold text-[#309c30] uppercase tracking-[0.08em] font-body mb-3">
+              <p className="text-[12px] font-semibold text-[#309c30] uppercase tracking-[0.08em] font-body mb-3 break-words">
                 {service.subtitle}
               </p>
               <p className="text-[14px] text-[#6b7280] leading-relaxed font-body mb-5">
@@ -172,7 +175,7 @@ export default function Leistungen() {
                     className="flex items-start gap-2 text-[14px] text-[#374151] font-body"
                   >
                     <span className="text-[#309c30] font-bold mt-0.5 flex-shrink-0">✓</span>
-                    {check}
+                    <span>{check}</span>
                   </li>
                 ))}
               </ul>
