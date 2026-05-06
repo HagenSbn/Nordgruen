@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+export const runtime = "nodejs";
+
 export async function POST(req: NextRequest) {
   const { name, telefon, email, nachricht } = await req.json();
 
@@ -21,6 +23,7 @@ export async function POST(req: NextRequest) {
     },
   });
 
+  try {
   await transporter.sendMail({
     from: `"Nordgrün Website" <${process.env.SMTP_USER}>`,
     to: "info@nordgruen.com",
@@ -43,6 +46,12 @@ export async function POST(req: NextRequest) {
       <p style="white-space:pre-wrap">${nachricht}</p>
     `,
   });
+
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "SMTP-Fehler";
+    console.error("SMTP error:", message);
+    return NextResponse.json({ error: `E-Mail konnte nicht gesendet werden: ${message}` }, { status: 500 });
+  }
 
   return NextResponse.json({ ok: true });
 }
