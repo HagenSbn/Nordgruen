@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function IconCircle({ children }: { children: React.ReactNode }) {
   return (
@@ -17,6 +17,42 @@ function IconCircle({ children }: { children: React.ReactNode }) {
 export default function Kontakt() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const [form, setForm] = useState({ name: "", telefon: "", email: "", nachricht: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("loading");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Unbekannter Fehler");
+      }
+
+      setStatus("success");
+      setForm({ name: "", telefon: "", email: "", nachricht: "" });
+    } catch (err: unknown) {
+      setStatus("error");
+      setErrorMsg(err instanceof Error ? err.message : "Die Nachricht konnte nicht gesendet werden.");
+    }
+  }
+
+  const inputClass =
+    "w-full border border-[#e5e7eb] rounded-[6px] px-4 py-3 min-h-[48px] text-[15px] text-[#111827] font-body focus:outline-none focus:border-[#309c30] focus:ring-1 focus:ring-[#309c30] transition-colors";
 
   return (
     <section id="kontakt" className="py-14 sm:py-20 md:py-24 bg-white">
@@ -97,59 +133,109 @@ export default function Kontakt() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
           >
-            <form className="space-y-4 sm:space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            {status === "success" ? (
+              <div className="h-full flex flex-col items-center justify-center text-center py-12 px-6 border border-[#309c30]/30 rounded-[8px] bg-[#f0faf0]">
+                <div className="w-14 h-14 rounded-full bg-[#309c30] flex items-center justify-center mb-5">
+                  <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="font-display font-bold text-[#111827] text-xl mb-2">Nachricht gesendet!</h3>
+                <p className="text-[#374151] font-body text-[15px] leading-relaxed mb-6">
+                  Vielen Dank für Ihre Anfrage. Wir melden uns innerhalb von 24 Stunden bei Ihnen.
+                </p>
+                <button
+                  onClick={() => setStatus("idle")}
+                  className="text-[#309c30] font-semibold font-body text-[14px] hover:underline"
+                >
+                  Neue Anfrage senden
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                  <div>
+                    <label className="block text-[14px] font-medium text-[#374151] font-body mb-1.5">
+                      Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={form.name}
+                      onChange={handleChange}
+                      placeholder="Ihr Name"
+                      required
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[14px] font-medium text-[#374151] font-body mb-1.5">
+                      Telefon
+                    </label>
+                    <input
+                      type="tel"
+                      name="telefon"
+                      value={form.telefon}
+                      onChange={handleChange}
+                      placeholder="Ihre Telefonnummer"
+                      className={inputClass}
+                    />
+                  </div>
+                </div>
+
                 <div>
                   <label className="block text-[14px] font-medium text-[#374151] font-body mb-1.5">
-                    Name
+                    E-Mail <span className="text-red-500">*</span>
                   </label>
                   <input
-                    type="text"
-                    placeholder="Ihr Name"
-                    className="w-full border border-[#e5e7eb] rounded-[6px] px-4 py-3 min-h-[48px] text-[15px] text-[#111827] font-body focus:outline-none focus:border-[#309c30] focus:ring-1 focus:ring-[#309c30] transition-colors"
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="Ihre E-Mail-Adresse"
+                    required
+                    className={inputClass}
                   />
                 </div>
+
                 <div>
                   <label className="block text-[14px] font-medium text-[#374151] font-body mb-1.5">
-                    Telefon
+                    Nachricht <span className="text-red-500">*</span>
                   </label>
-                  <input
-                    type="tel"
-                    placeholder="Ihre Telefonnummer"
-                    className="w-full border border-[#e5e7eb] rounded-[6px] px-4 py-3 min-h-[48px] text-[15px] text-[#111827] font-body focus:outline-none focus:border-[#309c30] focus:ring-1 focus:ring-[#309c30] transition-colors"
+                  <textarea
+                    name="nachricht"
+                    value={form.nachricht}
+                    onChange={handleChange}
+                    rows={5}
+                    placeholder="Beschreiben Sie Ihr Anliegen..."
+                    required
+                    className={`${inputClass} min-h-[unset] resize-none`}
                   />
                 </div>
-              </div>
 
-              <div>
-                <label className="block text-[14px] font-medium text-[#374151] font-body mb-1.5">
-                  E-Mail
-                </label>
-                <input
-                  type="email"
-                  placeholder="Ihre E-Mail-Adresse"
-                  className="w-full border border-[#e5e7eb] rounded-[6px] px-4 py-3 min-h-[48px] text-[15px] text-[#111827] font-body focus:outline-none focus:border-[#309c30] focus:ring-1 focus:ring-[#309c30] transition-colors"
-                />
-              </div>
+                {status === "error" && (
+                  <p className="text-red-600 text-[14px] font-body">{errorMsg}</p>
+                )}
 
-              <div>
-                <label className="block text-[14px] font-medium text-[#374151] font-body mb-1.5">
-                  Nachricht
-                </label>
-                <textarea
-                  rows={5}
-                  placeholder="Beschreiben Sie Ihr Anliegen..."
-                  className="w-full border border-[#e5e7eb] rounded-[6px] px-4 py-3 text-[15px] text-[#111827] font-body focus:outline-none focus:border-[#309c30] focus:ring-1 focus:ring-[#309c30] transition-colors resize-none"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-[#309c30] hover:bg-[#1e6b1e] text-white font-semibold py-4 min-h-[48px] px-6 sm:px-8 rounded-[6px] transition-all hover:scale-[1.01] font-body text-[15px] flex items-center justify-center gap-2"
-              >
-                Kostenlosen Termin anfragen
-              </button>
-            </form>
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  className="w-full bg-[#309c30] hover:bg-[#1e6b1e] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-4 min-h-[48px] px-6 sm:px-8 rounded-[6px] transition-all hover:scale-[1.01] font-body text-[15px] flex items-center justify-center gap-2"
+                >
+                  {status === "loading" ? (
+                    <>
+                      <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                      </svg>
+                      Wird gesendet…
+                    </>
+                  ) : (
+                    "Kostenlosen Termin anfragen"
+                  )}
+                </button>
+              </form>
+            )}
           </motion.div>
         </div>
       </div>
