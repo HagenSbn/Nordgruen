@@ -57,7 +57,7 @@ export default function Vorteile() {
             className="font-display font-bold text-white leading-tight [text-wrap:balance]"
             style={{ fontSize: "clamp(1.75rem, 4.5vw, 2.625rem)" }}
           >
-            Ihr Vorteil mit uns
+            Vorteile unserer Baumpflege in Hamburg
           </h2>
         </div>
 

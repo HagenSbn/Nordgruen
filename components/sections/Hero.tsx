@@ -58,7 +58,7 @@ export default function Hero() {
             animate="visible"
             className="text-[#4a9e30] block break-words"
           >
-            in Schleswig-Holstein &amp; Hamburg
+            {" "}in Schleswig-Holstein &amp; Hamburg
           </motion.span>
         </h1>
 

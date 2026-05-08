@@ -17,7 +17,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Nordgrün – Baum & Landschaftspflege Hamburg",
   description:
-    "Professionelle Baum- und Landschaftspflege von zertifizierten Fachleuten in Hamburg. FLL-zertifiziert, European Tree Worker. Kostenloser Vor-Ort-Termin.",
+    "Professionelle Baum- und Landschaftspflege von zertifizierten Fachleuten in Hamburg. FLL-zertifiziert, European Tree Worker. Jetzt kostenlosen Vor-Ort-Termin anfragen!",
   keywords:
     "Baumpflege Hamburg, Baumfällung Hamburg, Landschaftspflege Hamburg, FLL-zertifiziert, European Tree Worker",
   openGraph: {
