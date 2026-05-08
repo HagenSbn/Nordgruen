@@ -20,6 +20,9 @@ export const metadata: Metadata = {
     "Professionelle Baum- und Landschaftspflege von zertifizierten Fachleuten in Hamburg. FLL-zertifiziert, European Tree Worker. Jetzt kostenlosen Vor-Ort-Termin anfragen!",
   keywords:
     "Baumpflege Hamburg, Baumfällung Hamburg, Landschaftspflege Hamburg, FLL-zertifiziert, European Tree Worker",
+  verification: {
+    google: "GOIHyCN4vyfjguP7nq1niz_WYAOPSncsxy_MTwxdGNo",
+  },
   openGraph: {
     title: "Nordgrün – Baum & Landschaftspflege Hamburg",
     description:
