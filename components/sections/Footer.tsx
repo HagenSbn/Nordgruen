@@ -88,12 +88,6 @@ export default function Footer() {
             >
               Datenschutz
             </Link>
-            <Link
-              href="/agb"
-              className="text-white/30 hover:text-white/60 text-[13px] sm:text-sm font-body transition-colors"
-            >
-              AGB
-            </Link>
           </div>
         </div>
       </div>
