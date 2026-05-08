@@ -65,7 +65,7 @@ export default function AGB() {
                 Telefon: 04121 2633100
               </p>
               <p>
-                – nachfolgend „Nordgrün" – und dem Auftraggeber über die Erbringung von Baum-
+                &ndash; nachfolgend &bdquo;Nordgrün&ldquo; &ndash; und dem Auftraggeber über die Erbringung von Baum-
                 und Landschaftspflegeleistungen. Abweichende Bedingungen des Auftraggebers
                 werden nur anerkannt, wenn Nordgrün diesen ausdrücklich schriftlich zugestimmt hat.
               </p>
