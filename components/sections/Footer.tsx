@@ -72,9 +72,22 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <p className="text-white/30 text-[13px] sm:text-sm font-body">
-            © 2025 Nordgrün – Baum &amp; Landschaftspflege. Alle Rechte vorbehalten.
-          </p>
+          <div>
+            <p className="text-white/30 text-[13px] sm:text-sm font-body">
+              © 2025 Nordgrün – Baum &amp; Landschaftspflege. Alle Rechte vorbehalten.
+            </p>
+            <p className="text-white/20 text-[12px] font-body mt-1">
+              Erstellt von{" "}
+              <a
+                href="https://schoenborndigital.de"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white/40 transition-colors"
+              >
+                schoenborndigital.de
+              </a>
+            </p>
+          </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             <Link
               href="/impressum"
