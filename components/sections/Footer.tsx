@@ -74,7 +74,7 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <p className="text-white/30 text-[13px] sm:text-sm font-body">
-              © 2025 Nordgrün – Baum &amp; Landschaftspflege. Alle Rechte vorbehalten.
+              © 2026 Nordgrün – Baum &amp; Landschaftspflege. Alle Rechte vorbehalten.
             </p>
             <p className="text-white/20 text-[12px] font-body mt-1">
               Erstellt von{" "}
