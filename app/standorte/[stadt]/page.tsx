@@ -20,6 +20,7 @@ export async function generateMetadata({
   return {
     title: data.metaTitle,
     description: data.metaDescription,
+    alternates: { canonical: `/standorte/${stadt}` },
   };
 }
 

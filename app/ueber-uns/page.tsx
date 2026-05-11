@@ -5,6 +5,7 @@ import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/ueber-uns" },
   title: "Über Uns – Nordgrün Baum & Landschaftspflege",
   description:
     "Lernen Sie Torben Schönborn und das Team von Nordgrün kennen. ETW- und FLL-zertifizierte Fachkompetenz für Baum- und Landschaftspflege in Schleswig-Holstein & Hamburg.",

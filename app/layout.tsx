@@ -15,6 +15,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nordgruen.com"),
+  alternates: { canonical: "/" },
   title: "Nordgrün – Baum & Landschaftspflege Hamburg",
   description:
     "Professionelle Baum- und Landschaftspflege von zertifizierten Fachleuten in Hamburg. FLL-zertifiziert, European Tree Worker. Jetzt kostenlosen Vor-Ort-Termin anfragen!",

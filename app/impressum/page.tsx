@@ -6,6 +6,7 @@ import Footer from "@/components/sections/Footer";
 export const metadata: Metadata = {
   title: "Impressum – Nordgrün Baum & Landschaftspflege",
   description: "Impressum der Nordgrün GmbH – Angaben gemäß § 5 DDG und § 55 Abs. 2 RStV.",
+  alternates: { canonical: "/impressum" },
 };
 
 export default function Impressum() {

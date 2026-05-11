@@ -6,6 +6,7 @@ import Footer from "@/components/sections/Footer";
 export const metadata: Metadata = {
   title: "Datenschutz – Nordgrün Baum & Landschaftspflege",
   description: "Datenschutzerklärung der Nordgrün – Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.",
+  alternates: { canonical: "/datenschutz" },
 };
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
